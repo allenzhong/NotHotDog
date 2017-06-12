@@ -8,7 +8,7 @@ namespace NotHotDog
         {
             InitializeComponent();
 
-            MainPage = new NotHotDogPage();
+            MainPage = new Main();
         }
 
         protected override void OnStart()
