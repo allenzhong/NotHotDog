@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -44,21 +44,22 @@ namespace NotHotDog
 				return file.GetStream();
 			});
 
-			//file.Dispose();
+            //file.Dispose();
+            await MakePredictionRequest(file);
 		}
 
         static byte[] GetImageAsByteArray(MediaFile file)
         {
             var stream = file.GetStream();
             BinaryReader binaryReader = new BinaryReader(stream);
-            return binaryReader.ReadByte((int)stream.Length);
+            return binaryReader.ReadBytes((int)stream.Length);
         }
 
         async Task MakePredictionRequest(MediaFile file)
         {
             var client = new HttpClient();
 
-            client.DefaultRequestHeaders.Add("Predition-Key","306055b083f64c3ca25171b754c1f4b3");
+            client.DefaultRequestHeaders.Add("Prediction-Key","306055b083f64c3ca25171b754c1f4b3");
             string url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/9b3a082f-147a-42ce-943d-e0853a1391c5/image?iterationId=a729604d-0622-4507-afac-77a6e643d754";
 
             HttpResponseMessage response;
