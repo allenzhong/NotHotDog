@@ -76,16 +76,16 @@ namespace NotHotDog
                     var responseString = await response.Content.ReadAsStringAsync();
                     JObject rss = JObject.Parse(responseString);
 
-                    var probability = from p in rss["Predictions"] select (string)p["Probability"];
+                    var probability = from p in rss["Predictions"] select (double)p["Probability"];
                     var tag = from p in rss["Predictions"] select (string)p["Tag"];
 
                     foreach (var item in tag)
                     {
-                        TagLabel.Text += item + ": \n";
+                        TagLabel.Text += item + " : \n";
                     }
                     foreach (var item in probability)
                     {
-                        PredictionLabel.Text += item + "\n";
+                        PredictionLabel.Text += item.ToString("F2") + "% \n";
                     }
                 }
 
