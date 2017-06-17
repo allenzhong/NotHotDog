@@ -10,10 +10,11 @@ namespace NotHotDog
         private static AzureManager instance;
         private MobileServiceClient client;
         private IMobileServiceTable<NotHotDogModel> notHotDogTable;
-        private const string MOBILE_APP_URL = "";
+        private const string MOBILE_APP_URL = "https://azurehotdog.azurewebsites.net/";
 
         private AzureManager()
         {
+            //CurrentPlatform.Init();
             this.client = new MobileServiceClient(MOBILE_APP_URL);
             this.notHotDogTable = this.client.GetTable<NotHotDogModel>();
         }
